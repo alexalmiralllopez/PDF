@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* 2. HEADER: LOGO I MENÚ DESPLEGABLE TRANSPARENT */
+        /* 2. HEADER: LOGO ENLLAÇAT I MENÚ DESPLEGABLE ANIMAT */
         header {
             padding: 20px 0;
             display: flex;
@@ -46,6 +46,17 @@
             align-items: center;
             position: relative;
             z-index: 100;
+        }
+
+        /* Evita espais buits o comportaments rars en embolcallar el logo amb un enllaç */
+        .logo-link {
+            display: inline-block;
+            line-height: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.02); /* Un petit efecte visual quan passes el ratolí pel logo */
         }
 
         .logo {
@@ -74,26 +85,32 @@
             transition: all 0.3s ease;
         }
 
+        /* EL MENÚ DESPLEGABLE (Reformat per a l'animació en 0.3s) */
         .dropdown-menu {
-            display: none;
             position: absolute;
             top: 100%;
             right: 0;
             width: auto;
             min-width: 200px;
-            background-color: rgba(26, 26, 26, 0.75); /* 75% opacitat de #1a1a1a */
-            backdrop-filter: blur(5px); /* Efecte vidre entelat */
+            background-color: rgba(26, 26, 26, 0.75); /* 75% opacitat */
+            backdrop-filter: blur(5px); /* Efecte vidre */
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.25);
             padding: 10px 0;
+            
+            /* CONFIGURACIÓ DE L'ANIMACIÓ: Ocult per defecte i una mica més amunt (-15px) */
             opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+            visibility: hidden;
+            transform: translateY(-15px);
+            
+            /* Transició suau de 0.3 segons per a l'opacitat i el moviment */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
         }
 
+        /* CLASSE D'OBERTURA: Es desplaça a la seva posició original i es torna 100% visible */
         .dropdown-menu.open {
-            display: block;
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
 
@@ -115,6 +132,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Animació de les línies del menú (es transformen en una X) */
         .menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
         .menu-icon.active .bar:nth-child(2) { opacity: 0; }
         .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
@@ -128,17 +146,16 @@
 
         .page-title {
             font-size: 1.5rem;
-            font-weight: 300; /* Lletra fina com la captura */
+            font-weight: 300;
             color: #1a1a1a;
             margin-bottom: 50px;
             letter-spacing: -0.5px;
         }
 
-        /* ESTRUCTURA ASIMÈTRICA DELS PERFILS */
         .collective-section {
             display: flex;
             flex-direction: column;
-            gap: 70px; /* Separació entre músics */
+            gap: 70px;
         }
 
         .member-profile {
@@ -148,7 +165,6 @@
             align-items: center;
         }
 
-        /* Contenidors de text i imatge */
         .text-block {
             flex: 1;
         }
@@ -171,7 +187,6 @@
             color: #1a1a1a;
         }
 
-        /* TIPOGRAFIES INTERNES DE CADA MÚSIC */
         .member-header {
             margin-bottom: 12px;
         }
@@ -187,7 +202,7 @@
             font-size: 1rem;
             font-weight: 700;
             font-style: italic;
-            color: #1f6f62; /* Color verd/oliva corporatiu per destacar el rol */
+            color: #1f6f62;
         }
 
         .member-bio {
@@ -203,8 +218,7 @@
             font-weight: 500;
         }
 
-
-        /* AJUSTAMENTS RESPONSIVE PER A PANTALLES GRANS (L'efecte esglaonat) */
+        /* DISSENY RESPONSIVE ESGLAONAT */
         @media (min-width: 768px) {
             .member-profile {
                 flex-direction: row;
@@ -212,30 +226,27 @@
                 gap: 40px;
             }
 
-            /* ÀLEX: Imatge Esquerra, Text Dreta. Amplada normal a l'esquerra. */
             .member-profile.alex {
                 max-width: 85%;
             }
             .member-profile.alex .img-block img {
                 width: 160px;
                 height: 160px;
-                border-radius: 24px; /* Cantons arrodonits */
+                border-radius: 24px;
             }
 
-            /* EUDALD: Text Esquerra, Imatge Dreta (Desplaçat cap a la dreta del total) */
             .member-profile.eudald {
                 flex-direction: row-reverse;
                 max-width: 85%;
-                margin-left: auto; /* El desplaça cap a la dreta */
+                margin-left: auto;
                 justify-content: flex-start;
             }
             .member-profile.eudald .img-block img {
                 width: 150px;
                 height: 150px;
-                border-radius: 50%; /* Foto completament rodona! */
+                border-radius: 50%;
             }
 
-            /* XAVI I KIKE: Text Esquerra, Imatge Dreta (Aliniat a l'esquerra) */
             .member-profile.xavi-kike {
                 max-width: 85%;
                 flex-direction: row;
@@ -247,10 +258,9 @@
             .member-profile.xavi-kike .img-block img {
                 width: 250px;
                 height: 150px;
-                border-radius: 30px; /* Cantons molt arrodonits horizontals */
+                border-radius: 30px;
             }
         }
-
 
         /* 4. FOOTER */
         footer {
@@ -270,7 +280,9 @@
     <div class="site-container">
         
         <header>
-            <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            </a>
             
             <div class="menu-icon" id="menu-icon">
                 <div class="bar"></div>
@@ -280,7 +292,6 @@
 
             <nav id="dropdown-menu" class="dropdown-menu">
                 <ul>
-                    <li><a href="index.html">Inici</a></li>
                     <li><a href="qui-som.html">Qui som?</a></li>
                     <li><a href="musica.html">Música</a></li>
                     <li><a href="manifest.html">Manifest</a></li>
