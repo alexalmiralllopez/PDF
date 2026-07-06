@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groovin' Around - Música en directe i Sonoritzacions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. CONFIGURACIÓ GENERAL DE LA PÀGINA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7d648; /* El groc corporatiu de la teva captura */
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CONTAINER GENERAL (Per donar l'efecte de marges arrodonits de la captura) */
+        .site-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #f7d648;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. HEADER I LOGO */
+        header {
+            padding: 20px 0;
+        }
+
+        .logo {
+            max-width: 220px; /* Mida ideal per al teu logotip */
+            height: auto;
+        }
+
+        /* 3. COS PRINCIPAL (Dues columnes en escriptori, una en mòbil) */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 40px 0;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .text-column {
+                flex: 1;
+                max-width: 55%;
+            }
+            .video-column {
+                flex: 1;
+                max-width: 42%;
+            }
+        }
+
+        /* TEXTOS */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        /* BOTÓ CONTACTA'NS (Verd fosc / Teix de la imatge) */
+        .btn-contact {
+            display: inline-block;
+            background-color: #1f6f62; /* El color verd fosc de la captura */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 50px; /* Efecte píndola */
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-contact:hover {
+            background-color: #17544a;
+            transform: translateY(-2px);
+        }
+
+        /* MULTIMÈDIA / VIDEO YOUTUBE */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relació d'aspecte 16:9 */
+            height: 0;
+            border-radius: 24px; /* Cantons arrodonits fets a mida */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 4. FOOTER (Peu de pàgina) */
+        footer {
+            background-color: #ebd154; /* Un groc lleugerament més fosc per contrastar */
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2b2b2b;
+            margin-top: auto;
+            border-radius: 0 0 12px 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+        
+        <header>
+            <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+        </header>
+
+        <main class="main-content">
+            
+            <div class="text-column">
+                <h1>Música en directe,<br>sonoritzacions /<br>il·luminació</h1>
+                
+                <p class="subtitle">
+                    Versions d'Horace Silver, Bob Marley, Dimitri Shostakovich, Johnny Hodges, Erik Satie, The Meters i més!
+                </p>
+                
+                <a href="mailto:info@groovinaround.com" class="btn-contact">Contacta'ns</a>
+            </div>
+
+            <div class="video-column">
+                <div class="video-container">
+                    <iframe src="https://youtu.be/5eh9qBH933M?si=8-Pem2cQxI0Pf8mg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>
+        &copy; Groovin' Around 2026 - All Rights Reserved
+    </footer>
+
+</body>
+</html>
