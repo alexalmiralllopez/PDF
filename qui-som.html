@@ -48,7 +48,6 @@
             z-index: 100;
         }
 
-        /* Evita espais buits o comportaments rars en embolcallar el logo amb un enllaç */
         .logo-link {
             display: inline-block;
             line-height: 0;
@@ -56,12 +55,16 @@
         }
 
         .logo-link:hover {
-            transform: scale(1.02); /* Un petit efecte visual quan passes el ratolí pel logo */
+            transform: scale(1.02);
         }
 
         .logo {
-            max-width: 220px;
+            max-width: 180px; /* Una mica més contingut de base per a mòbils */
             height: auto;
+        }
+
+        @media (min-width: 768px) {
+            .logo { max-width: 220px; }
         }
 
         .menu-icon {
@@ -85,29 +88,23 @@
             transition: all 0.3s ease;
         }
 
-        /* EL MENÚ DESPLEGABLE (Reformat per a l'animació en 0.3s) */
         .dropdown-menu {
             position: absolute;
             top: 100%;
             right: 0;
             width: auto;
             min-width: 200px;
-            background-color: rgba(26, 26, 26, 0.75); /* 75% opacitat */
-            backdrop-filter: blur(5px); /* Efecte vidre */
+            background-color: rgba(26, 26, 26, 0.75);
+            backdrop-filter: blur(5px);
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.25);
             padding: 10px 0;
-            
-            /* CONFIGURACIÓ DE L'ANIMACIÓ: Ocult per defecte i una mica més amunt (-15px) */
             opacity: 0;
             visibility: hidden;
             transform: translateY(-15px);
-            
-            /* Transició suau de 0.3 segons per a l'opacitat i el moviment */
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
         }
 
-        /* CLASSE D'OBERTURA: Es desplaça a la seva posició original i es torna 100% visible */
         .dropdown-menu.open {
             opacity: 1;
             visibility: visible;
@@ -132,7 +129,6 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Animació de les línies del menú (es transformen en una X) */
         .menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
         .menu-icon.active .bar:nth-child(2) { opacity: 0; }
         .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
@@ -140,129 +136,144 @@
 
         /* 3. CONTINGUT PRINCIPAL: THE GROOVIN' COLLECTIVE */
         .main-content {
-            padding: 40px 0;
+            padding: 30px 0;
             flex-grow: 1;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 300;
             color: #1a1a1a;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             letter-spacing: -0.5px;
         }
 
         .collective-section {
             display: flex;
             flex-direction: column;
-            gap: 70px;
+            gap: 50px; /* Bona separació a mòbils */
         }
 
+        /* CONFIGURACIÓ PER A MÒBILS (Base) */
         .member-profile {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
+            flex-direction: column; /* Un sota de l'altre en mòbils */
+            gap: 15px;
             align-items: center;
+            text-align: center; /* Text centrat per a pantalles petites */
         }
 
         .text-block {
-            flex: 1;
+            width: 100%;
         }
 
         .img-block {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+        }
+
+        /* Mides controlades de les imatges per a mòbils */
+        .member-profile.alex .img-block img {
+            width: 130px;
+            height: 130px;
+            border-radius: 20px;
+        }
+
+        .member-profile.eudald .img-block img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Manté el cercle perfecte */
+        }
+
+        .member-profile.xavi-kike .img-block img {
+            width: 200px;
+            height: 120px;
+            border-radius: 20px;
         }
 
         .img-block img {
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .img-caption {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: #1a1a1a;
         }
 
         .member-header {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .member-name {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            display: inline-block;
-            margin-right: 10px;
+            display: block; /* Nom a dalt */
+            margin-bottom: 2px;
         }
 
         .member-role {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             font-style: italic;
             color: #1f6f62;
+            display: block; /* Rol a sota */
         }
 
         .member-bio {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             line-height: 1.5;
             color: #1a1a1a;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .member-location {
             font-size: 0.8rem;
-            color: #8c8c8c;
-            font-weight: 500;
+            color: #737373;
+            font-weight: 600;
         }
 
-        /* DISSENY RESPONSIVE ESGLAONAT */
+
+        /* 4. DISSENY RESPONSIVE EXTRA PER A ESCRIPTORI (Pantalles grans) */
         @media (min-width: 768px) {
+            .main-content { padding: 40px 0; }
+            .page-title { font-size: 1.5rem; margin-bottom: 50px; }
+            .collective-section { gap: 70px; }
+            
             .member-profile {
-                flex-direction: row;
+                flex-direction: row; /* En línia (esquerra/dreta) */
                 align-items: flex-start;
+                text-align: left; /* Text a l'esquerra original */
                 gap: 40px;
             }
 
-            .member-profile.alex {
-                max-width: 85%;
-            }
-            .member-profile.alex .img-block img {
-                width: 160px;
-                height: 160px;
-                border-radius: 24px;
-            }
+            .member-name { display: inline-block; margin-right: 10px; font-size: 1.8rem; }
+            .member-role { display: inline-block; font-size: 1rem; }
+            .member-bio { font-size: 1.05rem; }
 
+            /* ÀLEX (Escriptori) */
+            .member-profile.alex { max-width: 85%; }
+            .member-profile.alex .img-block img { width: 160px; height: 160px; }
+
+            /* EUDALD (Escriptori - Invertit) */
             .member-profile.eudald {
                 flex-direction: row-reverse;
                 max-width: 85%;
                 margin-left: auto;
                 justify-content: flex-start;
             }
-            .member-profile.eudald .img-block img {
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-            }
+            .member-profile.eudald .img-block img { width: 150px; height: 150px; }
 
-            .member-profile.xavi-kike {
-                max-width: 85%;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .member-profile.xavi-kike .text-block {
-                max-width: 50%;
-            }
-            .member-profile.xavi-kike .img-block img {
-                width: 250px;
-                height: 150px;
-                border-radius: 30px;
-            }
+            /* XAVI I KIKE (Escriptori) */
+            .member-profile.xavi-kike { max-width: 85%; justify-content: space-between; }
+            .member-profile.xavi-kike .text-block { max-width: 55%; }
+            .member-profile.xavi-kike .img-block img { width: 250px; height: 150px; }
         }
 
-        /* 4. FOOTER */
+        /* 5. FOOTER */
         footer {
             background-color: #ebd154;
             padding: 20px;
@@ -306,7 +317,7 @@
 
                 <div class="member-profile alex">
                     <div class="img-block">
-                        <img src="images/alex-almirall.jpg" alt="Àlex Almirall">
+                        <img src="imatges/alex-almirall.jpg" alt="Àlex Almirall">
                         <span class="img-caption">À. Almirall</span>
                     </div>
                     <div class="text-block">
@@ -323,7 +334,7 @@
 
                 <div class="member-profile eudald">
                     <div class="img-block">
-                        <img src="images/eudald-lopez.jpg" alt="Eudald López">
+                        <img src="imatges/eudald-lopez.jpg" alt="Eudald López">
                         <span class="img-caption">Eudald López</span>
                     </div>
                     <div class="text-block">
@@ -332,13 +343,17 @@
                             <span class="member-role">Baterista</span>
                         </div>
                         <p class="member-bio">Graduat en especialitat d'interpretació de bateria jazz a l'ESEM.</p>
-                        <p class="member-bio">Ha participat en projectes de músics com David Pastor o Marcel·lí Bayer, entre d'altres.</p>
+                        <p class="member-bio">Ha participat en projectes de músics com David Pastor o Marcel·li Bayer, entre d'altres.</p>
                         <p class="member-bio">Groovin' Around va començar tocant junts. Sense ell el projecte no seria una realitat.</p>
                         <div class="member-location">📍 Barcelona</div>
                     </div>
                 </div>
 
                 <div class="member-profile xavi-kike">
+                    <div class="img-block">
+                        <img src="imatges/xavi-kike.jpg" alt="Xavi i Kike">
+                        <span class="img-caption">X. Barrios, K. Pareja</span>
+                    </div>
                     <div class="text-block">
                         <div class="member-header">
                             <span class="member-name">Xavi i Kike</span>
@@ -347,10 +362,6 @@
                         <p class="member-bio">Sempre buscant el millor so i participant activament amb els arranjaments dels temes.</p>
                         <p class="member-bio">Tocar plegats sempre és un plaer.</p>
                         <div class="member-location">📍 Capellades / Carme</div>
-                    </div>
-                    <div class="img-block">
-                        <img src="images/xavi-kike.jpg" alt="Xavi i Kike">
-                        <span class="img-caption">X. Barrios, K. Pareja</span>
                     </div>
                 </div>
 
