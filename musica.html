@@ -153,126 +153,6 @@
             flex-direction: column;
             gap: 50px; /* Bona separació a mòbils */
         }
-
-        /* CONFIGURACIÓ PER A MÒBILS (Base) */
-        .member-profile {
-            display: flex;
-            flex-direction: column; /* Un sota de l'altre en mòbils */
-            gap: 15px;
-            align-items: center;
-            text-align: center; /* Text centrat per a pantalles petites */
-        }
-
-        .text-block {
-            width: 100%;
-        }
-
-        .img-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Mides controlades de les imatges per a mòbils */
-        .member-profile.alex .img-block img {
-            width: 130px;
-            height: 130px;
-            border-radius: 20px;
-        }
-
-        .member-profile.eudald .img-block img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Manté el cercle perfecte */
-        }
-
-        .member-profile.xavi-kike .img-block img {
-            width: 200px;
-            height: 120px;
-            border-radius: 20px;
-        }
-
-        .img-block img {
-            object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .img-caption {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-
-        .member-header {
-            margin-bottom: 8px;
-        }
-
-        .member-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: block; /* Nom a dalt */
-            margin-bottom: 2px;
-        }
-
-        .member-role {
-            font-size: 0.95rem;
-            font-weight: 700;
-            font-style: italic;
-            color: #1f6f62;
-            display: block; /* Rol a sota */
-        }
-
-        .member-bio {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-
-        .member-location {
-            font-size: 0.8rem;
-            color: #737373;
-            font-weight: 600;
-        }
-
-
-        /* 4. DISSENY RESPONSIVE EXTRA PER A ESCRIPTORI (Pantalles grans) */
-        @media (min-width: 768px) {
-            .main-content { padding: 40px 0; }
-            .page-title { font-size: 1.5rem; margin-bottom: 50px; }
-            .collective-section { gap: 70px; }
-            
-            .member-profile {
-                flex-direction: row; /* En línia (esquerra/dreta) */
-                align-items: flex-start;
-                text-align: left; /* Text a l'esquerra original */
-                gap: 40px;
-            }
-
-            .member-name { display: inline-block; margin-right: 10px; font-size: 1.8rem; }
-            .member-role { display: inline-block; font-size: 1rem; }
-            .member-bio { font-size: 1.05rem; }
-
-            /* ÀLEX (Escriptori) */
-            .member-profile.alex { max-width: 85%; }
-            .member-profile.alex .img-block img { width: 160px; height: 160px; }
-
-            /* EUDALD (Escriptori - Invertit) */
-            .member-profile.eudald {
-                flex-direction: row-reverse;
-                max-width: 85%;
-                margin-left: auto;
-                justify-content: flex-start;
-            }
-            .member-profile.eudald .img-block img { width: 150px; height: 150px; }
-
-            /* XAVI I KIKE (Escriptori) */
-            .member-profile.xavi-kike { max-width: 85%; justify-content: space-between; }
-            .member-profile.xavi-kike .text-block { max-width: 55%; }
-            .member-profile.xavi-kike .img-block img { width: 250px; height: 150px; }
-        }
-
         /* 5. FOOTER */
         footer {
             background-color: #ebd154;
@@ -305,13 +185,13 @@
                 <ul>
                     <li><a href="qui-som.html">Qui som?</a></li>
                     <li><a href="musica.html">Música</a></li>
-                    <li><a href="manifest.html">Manifest</a></li>
+                    <li><a href="pdf/Manifest.pdf">Manifest</a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="main-content">
-            <h2 class="page-title">El nostre directe</h2>
+            <h2 class="page-title">El nostre directe, un espai on conflueixen jazz i clàssica.</h2>
 
 
                     </div>
