@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groovin' Around - Música en directe i Sonoritzacions</title>
+    <title>Groovin' Around - Música i Sonoritzacions (Amb Menú)</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
             flex-direction: column;
         }
 
-        /* CONTAINER GENERAL (Per donar l'efecte de marges arrodonits de la captura) */
+        /* CONTAINER GENERAL */
         .site-container {
             width: 95%;
             max-width: 1200px;
@@ -35,19 +35,107 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            position: relative; /* Per al menú desplegable */
         }
 
-        /* 2. HEADER I LOGO */
+        /* 2. HEADER: LOGO I MENÚ RESPONSIVE */
         header {
             padding: 20px 0;
+            display: flex;
+            justify-content: space-between; /* Logo esquerra, menú dreta */
+            align-items: center;
+            position: relative; /* Per al menú desplegable */
+            z-index: 100; /* Assegura que el header estigui a sobre del contingut */
         }
 
         .logo {
-            max-width: 220px; /* Mida ideal per al teu logotip */
+            max-width: 220px;
             height: auto;
         }
 
-        /* 3. COS PRINCIPAL (Dues columnes en escriptori, una en mòbil) */
+        /* ICONA DE MENÚ HAMBURGER (Tres línies) */
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            opacity: 0.8;
+        }
+
+        .bar {
+            width: 35px;
+            height: 4px;
+            background-color: #1a1a1a; /* Negre com el text */
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* EL MENÚ DESPLEGABLE (Ocult per defecte) */
+        .dropdown-menu {
+            display: none; /* Ocult inicialment */
+            position: absolute;
+            top: 100%; /* Just a sota del header */
+            right: 0;
+            width: auto;
+            min-width: 200px;
+            
+            /* CANVI D'OPACITAT AQUÍ: 26, 26, 26 és el #1a1a1a i 0.75 és el 75% d'opacitat */
+            background-color: rgba(26, 26, 26, 0.75); 
+            backdrop-filter: blur(5px); /* Efecte extra: difumina el fons groc que es veu a través */
+            
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            padding: 10px 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+        }
+
+        /* Classe que afegirem amb JS per mostrar el menú */
+        .dropdown-menu.open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+        }
+
+        /* ELS ENLLAÇOS DEL MENÚ */
+        .dropdown-menu a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #ffffff; /* El text es manté 100% blanc i llegible */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            /* Fons una mica més marcat en passar-hi el ratolí, mantenint la transparència */
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+
+        /* Ajustaments per quan el menú està obert */
+        .menu-icon.active .bar:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+        .menu-icon.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.active .bar:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* 3. COS PRINCIPAL */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -90,14 +178,14 @@
             font-weight: 500;
         }
 
-        /* BOTÓ CONTACTA'NS (Verd fosc / Teix de la imatge) */
+        /* BOTÓ CONTACTA'NS */
         .btn-contact {
             display: inline-block;
-            background-color: #1f6f62; /* El color verd fosc de la captura */
+            background-color: #1f6f62;
             color: #ffffff;
             text-decoration: none;
             padding: 14px 32px;
-            border-radius: 50px; /* Efecte píndola */
+            border-radius: 50px;
             font-weight: 600;
             font-size: 1rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -114,7 +202,7 @@
             width: 100%;
             padding-bottom: 56.25%; /* Relació d'aspecte 16:9 */
             height: 0;
-            border-radius: 24px; /* Cantons arrodonits fets a mida */
+            border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
@@ -128,9 +216,9 @@
             border: none;
         }
 
-        /* 4. FOOTER (Peu de pàgina) */
+        /* 4. FOOTER */
         footer {
-            background-color: #ebd154; /* Un groc lleugerament més fosc per contrastar */
+            background-color: #ebd154;
             padding: 20px;
             text-align: center;
             font-size: 0.9rem;
@@ -147,6 +235,19 @@
         
         <header>
             <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            
+            <div class="menu-icon" id="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+<nav id="dropdown-menu" class="dropdown-menu">
+    <ul>
+        <li><a href="qui-som.html">Qui som?</a></li>
+        <li><a href="musica.html">Música</a></li>        
+        <li><a href="pdf/Manifest.pdf" target="_blank">Manifest</a></li>
+    </ul>
+</nav>
         </header>
 
         <main class="main-content">
@@ -163,7 +264,7 @@
 
             <div class="video-column">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/5eh9qBH933M?si=Mjc_XcHwqmwVdmLl" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/5eh9qBH933M?si=Mjc_XcHwqmwVdmLl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -174,6 +275,23 @@
     <footer>
         &copy; Groovin' Around 2026 - All Rights Reserved
     </footer>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        menuIcon.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('open');
+            menuIcon.classList.toggle('active');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!menuIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('open');
+                menuIcon.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
