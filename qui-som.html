@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Groovin' Collective - Qui Som?</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. CONFIGURACIÓ GENERAL DE LA PÀGINA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7d648; /* Groc corporatiu */
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CONTAINER GENERAL */
+        .site-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #f7d648;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* 2. HEADER: LOGO I MENÚ DESPLEGABLE TRANSPARENT */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            max-width: 220px;
+            height: auto;
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            opacity: 0.8;
+        }
+
+        .bar {
+            width: 35px;
+            height: 4px;
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: auto;
+            min-width: 200px;
+            background-color: rgba(26, 26, 26, 0.75); /* 75% opacitat de #1a1a1a */
+            backdrop-filter: blur(5px); /* Efecte vidre entelat */
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            padding: 10px 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .menu-icon.active .bar:nth-child(2) { opacity: 0; }
+        .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+
+        /* 3. CONTINGUT PRINCIPAL: THE GROOVIN' COLLECTIVE */
+        .main-content {
+            padding: 40px 0;
+            flex-grow: 1;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 300; /* Lletra fina com la captura */
+            color: #1a1a1a;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        /* ESTRUCTURA ASIMÈTRICA DELS PERFILS */
+        .collective-section {
+            display: flex;
+            flex-direction: column;
+            gap: 70px; /* Separació entre músics */
+        }
+
+        .member-profile {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        /* Contenidors de text i imatge */
+        .text-block {
+            flex: 1;
+        }
+
+        .img-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .img-block img {
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .img-caption {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* TIPOGRAFIES INTERNES DE CADA MÚSIC */
+        .member-header {
+            margin-bottom: 12px;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .member-role {
+            font-size: 1rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #1f6f62; /* Color verd/oliva corporatiu per destacar el rol */
+        }
+
+        .member-bio {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .member-location {
+            font-size: 0.8rem;
+            color: #8c8c8c;
+            font-weight: 500;
+        }
+
+
+        /* AJUSTAMENTS RESPONSIVE PER A PANTALLES GRANS (L'efecte esglaonat) */
+        @media (min-width: 768px) {
+            .member-profile {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
+            }
+
+            /* ÀLEX: Imatge Esquerra, Text Dreta. Amplada normal a l'esquerra. */
+            .member-profile.alex {
+                max-width: 85%;
+            }
+            .member-profile.alex .img-block img {
+                width: 160px;
+                height: 160px;
+                border-radius: 24px; /* Cantons arrodonits */
+            }
+
+            /* EUDALD: Text Esquerra, Imatge Dreta (Desplaçat cap a la dreta del total) */
+            .member-profile.eudald {
+                flex-direction: row-reverse;
+                max-width: 85%;
+                margin-left: auto; /* El desplaça cap a la dreta */
+                justify-content: flex-start;
+            }
+            .member-profile.eudald .img-block img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%; /* Foto completament rodona! */
+            }
+
+            /* XAVI I KIKE: Text Esquerra, Imatge Dreta (Aliniat a l'esquerra) */
+            .member-profile.xavi-kike {
+                max-width: 85%;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .member-profile.xavi-kike .text-block {
+                max-width: 50%;
+            }
+            .member-profile.xavi-kike .img-block img {
+                width: 250px;
+                height: 150px;
+                border-radius: 30px; /* Cantons molt arrodonits horizontals */
+            }
+        }
+
+
+        /* 4. FOOTER */
+        footer {
+            background-color: #ebd154;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2b2b2b;
+            margin-top: auto;
+            border-radius: 12px 12px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+        
+        <header>
+            <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            
+            <div class="menu-icon" id="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <nav id="dropdown-menu" class="dropdown-menu">
+                <ul>
+                    <li><a href="index.html">Inici</a></li>
+                    <li><a href="qui-som.html">Qui som?</a></li>
+                    <li><a href="musica.html">Música</a></li>
+                    <li><a href="manifest.html">Manifest</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <h2 class="page-title">The Groovin' Collective</h2>
+
+            <div class="collective-section">
+
+                <div class="member-profile alex">
+                    <div class="img-block">
+                        <img src="imatges/alex-almirall.jpg" alt="Àlex Almirall">
+                        <span class="img-caption">À. Almirall</span>
+                    </div>
+                    <div class="text-block">
+                        <div class="member-header">
+                            <span class="member-name">Àlex</span>
+                            <span class="member-role">Multi-instrumentista / Tècnic de so i llums</span>
+                        </div>
+                        <p class="member-bio">Graduat en especialitat de jazz i música moderna a l'ESMUC (sonologia).</p>
+                        <p class="member-bio">Ha compartit escenari amb artistes com b1n0, Henrio, Gélis o Red Pèrill entre d'altres.</p>
+                        <p class="member-bio">Com a compositor i productor, ha treballat amb projectes artístics interdisciplinaris col·laborant amb ballarins o poetes com Feliu Formosa i també en projectes audiovisuals, entre els quals l'univers sonor del canal SX3.</p>
+                        <div class="member-location">📍 Capellades</div>
+                    </div>
+                </div>
+
+                <div class="member-profile eudald">
+                    <div class="img-block">
+                        <img src="imatges/eudald-lopez.jpg" alt="Eudald López">
+                        <span class="img-caption">Eudald López</span>
+                    </div>
+                    <div class="text-block">
+                        <div class="member-header">
+                            <span class="member-name">Eudald</span>
+                            <span class="member-role">Baterista</span>
+                        </div>
+                        <p class="member-bio">Graduat en especialitat d'interpretació de bateria jazz a l'ESEM.</p>
+                        <p class="member-bio">Ha participat en projectes de músics com David Pastor o Marcel·lí Bayer, entre d'altres.</p>
+                        <p class="member-bio">Groovin' Around va començar tocant junts. Sense ell el projecte no seria una realitat.</p>
+                        <div class="member-location">📍 Barcelona</div>
+                    </div>
+                </div>
+
+                <div class="member-profile xavi-kike">
+                    <div class="text-block">
+                        <div class="member-header">
+                            <span class="member-name">Xavi i Kike</span>
+                            <span class="member-role">Guitarrista & Baterista</span>
+                        </div>
+                        <p class="member-bio">Sempre buscant el millor so i participant activament amb els arranjaments dels temes.</p>
+                        <p class="member-bio">Tocar plegats sempre és un plaer.</p>
+                        <div class="member-location">📍 Capellades / Carme</div>
+                    </div>
+                    <div class="img-block">
+                        <img src="imatges/xavi-kike.jpg" alt="Xavi i Kike">
+                        <span class="img-caption">X. Barrios, K. Pareja</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        &copy; Groovin' Around 2026 - All Rights Reserved
+    </footer>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        menuIcon.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('open');
+            menuIcon.classList.toggle('active');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!menuIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('open');
+                menuIcon.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
