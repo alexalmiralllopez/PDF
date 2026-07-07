@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Groovin' Collective - Qui Som?</title>
+    <title>The Groovin' Collective - Música</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden; /* Evita barres horitzontals pel tall dels focus */
         }
 
         /* CONTAINER GENERAL */
@@ -59,7 +60,7 @@
         }
 
         .logo {
-            max-width: 180px; /* Una mica més contingut de base per a mòbils */
+            max-width: 180px;
             height: auto;
         }
 
@@ -134,30 +135,142 @@
         .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
 
-        /* 3. CONTINGUT PRINCIPAL: THE GROOVIN' COLLECTIVE */
+        /* 3. CONTINGUT PRINCIPAL */
         .main-content {
             padding: 30px 0;
             flex-grow: 1;
+            position: relative;
+        }
+
+        .header-block {
+            max-width: 65%;
+            margin-bottom: 40px;
         }
 
         .page-title {
-            font-size: 1.4rem;
-            font-weight: 300;
+            font-size: 1.6rem;
+            font-weight: 400;
             color: #1a1a1a;
-            margin-bottom: 40px;
-            letter-spacing: -0.5px;
+            margin-bottom: 25px;
         }
 
-        .collective-section {
+        .page-title span {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #555;
+            margin-left: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #1a1a1a;
+        }
+
+        /* DISSENY DE LA SECCIÓ DE VÍDEOS */
+        .music-layout {
             display: flex;
             flex-direction: column;
-            gap: 50px; /* Bona separació a mòbils */
+            gap: 30px;
+            margin-bottom: 50px;
         }
-        /* 5. FOOTER */
+
+        .video-row {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            width: 100%;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Ràtio 16:9 perfecta */
+            height: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Secció inferior text secundari (Mòbil) */
+        .bottom-section {
+            width: 100%;
+            margin-top: 40px; /* Separació generosa a mòbils */
+        }
+
+        .bottom-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .bottom-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* PNG FOCUS (Capgirat i tallat naturalment) */
+        .leds-decor {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            transform: scaleX(-1); /* Capgira horitzontalment */
+            width: 240px;
+            top: 40px;
+            right: -80px;
+        }
+
+
+        /* 4. DISSENY RESPONSIVE FIXA PER A ESCRIPTORI */
+        @media (min-width: 768px) {
+            .page-title { font-size: 2rem; }
+            
+            .video-row {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 40px;
+            }
+
+            .video-row .video-wrapper {
+                width: 440px; 
+            }
+
+            /* Desplaçament asimètric clavat a la captura */
+            .video-row.bottom {
+                margin-top: -10px;
+                padding-left: 160px;
+            }
+
+            /* Retocs de posició i respiració del bloc de text inferior */
+            .bottom-section {
+                max-width: 50%;
+                margin-left: 490px;
+                margin-top: 30px; /* Incrementat l'espai respecte als vídeos de sobre */
+            }
+
+            .leds-decor {
+                width: 420px;
+                top: 70px;
+                right: -150px;
+            }
+        }
+
+        /* 5. FOOTER (Text centrat) */
         footer {
             background-color: #ebd154;
             padding: 20px;
-            text-align: center;
+            text-align: center; /* Centrat de text actiu */
             font-size: 0.9rem;
             font-weight: 500;
             color: #2b2b2b;
@@ -185,19 +298,61 @@
                 <ul>
                     <li><a href="qui-som.html">Qui som?</a></li>
                     <li><a href="musica.html">Música</a></li>
-                    <li><a href="pdf/Manifest.pdf">Manifest</a></li>
+                    <li><a href="pdf/Manifest.pdf" target="_blank">Manifest</a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="main-content">
-            <h2 class="page-title">El nostre directe, un espai on conflueixen jazz i clàssica.</h2>
+            
+            <img src="images/leds.png" alt="Leds" class="leds-decor">
 
+            <div class="header-block">
+                <h2 class="page-title">El nostre directe, live sound <span>sequenced lights</span></h2>
+                <p class="subtitle">
+                    Un <strong>trio</strong> on es combinen <strong>Hammond</strong> (orgue), <strong>saxo</strong> tenor i <strong>trompeta</strong> amb <strong>bateria</strong> i <strong>guitarra</strong> elèctrica.<br>
+                    Un espectacle on interacció col·lectiva i tecnologia s'uneixen per compartir bons moments.
+                </p>
+            </div>
 
+            <div class="music-layout">
+                
+                <div class="video-row top">
+                    <div class="video-wrapper">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/0NgqFbDq488?si=5sQ2hIVNsdo2SZq3" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="video-wrapper">
+                        <div class="video-container">
+                            <iframe src="https://youtu.be/embed/YTRxv2iWFMg" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-row bottom">
+                    <div class="video-wrapper">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/5eh9qBH933M" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="video-wrapper">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/zp3YmMv6pdc?si=f7c65EcGcI-cXgm2" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+            <div class="bottom-section">
+                <h3 class="bottom-title">Un projecte obert</h3>
+                <p class="bottom-text">
+                    Groovin' Around és un projecte col·laboratiu a nivell musical i logístic.<br>
+                    Ens adaptem a les necessitats d'espais i esdeveniments tenint en compte cada detall.
+                </p>
+            </div>
+
         </main>
 
     </div>
