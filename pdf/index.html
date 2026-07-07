@@ -14,6 +14,13 @@
         body, html { width: 100%; height: 100%; background-color: #f7d648; overflow: hidden; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
+    <script>
+        // Truc per a mòbils: Si és un mòbil, el redirigim directament al PDF
+        // perquè no es quedi clavat a l'iframe amb la pantalla fosca.
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            window.location.href = "pdf/Manifest.pdf";
+        }
+    </script>
 </head>
 <body>
     <iframe src="../pdf/GroovinAroundCAT.pdf"></iframe>
