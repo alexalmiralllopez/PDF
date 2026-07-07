@@ -48,6 +48,16 @@
             z-index: 100; /* Assegura que el header estigui a sobre del contingut */
         }
 
+        .logo-link {
+            display: inline-block;
+            line-height: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.02);
+        }
+
         .logo {
             max-width: 220px;
             height: auto;
@@ -75,9 +85,8 @@
             transition: all 0.3s ease;
         }
 
-        /* EL MENÚ DESPLEGABLE (Ocult per defecte) */
+        /* EL MENÚ DESPLEGABLE ANIMAT (Sense display:none per permetre transicions) */
         .dropdown-menu {
-            display: none; /* Ocult inicialment */
             position: absolute;
             top: 100%; /* Just a sota del header */
             right: 0;
@@ -91,15 +100,18 @@
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.25);
             padding: 10px 0;
+            
+            /* ESTAT INICIAL PER A LA TRANSICIÓ ACCESSIBLE */
             opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+            visibility: hidden;
+            transform: translateY(-15px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
         }
 
-        /* Classe que afegirem amb JS per mostrar el menú */
+        /* Classe que afegirem amb JS per mostrar el menú de manera fluida */
         .dropdown-menu.open {
-            display: block;
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
 
@@ -124,7 +136,7 @@
             background-color: rgba(255, 255, 255, 0.1); 
         }
 
-        /* Ajustaments per quan el menú està obert */
+        /* Ajustaments per quan el menú està obert (Efecte creu) */
         .menu-icon.active .bar:nth-child(1) {
             transform: translateY(10px) rotate(45deg);
         }
@@ -234,20 +246,23 @@
     <div class="site-container">
         
         <header>
-            <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Groovin' Around Logo" class="logo">
+            </a>
             
             <div class="menu-icon" id="menu-icon">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
-<nav id="dropdown-menu" class="dropdown-menu">
-    <ul>
-        <li><a href="musica.html">Música</a></li>   
-        <li><a href="qui-som.html">Qui som?</a></li>     
-        <li><a href="pdf/Manifest.pdf" target="_blank">Manifest</a></li>
-    </ul>
-</nav>
+            
+            <nav id="dropdown-menu" class="dropdown-menu">
+                <ul>
+                    <li><a href="musica.html">Música</a></li>   
+                    <li><a href="qui-som.html">Qui som?</a></li>      
+                    <li><a href="manifest.html" target="_blank">Manifest</a></li>
+                </ul>
+            </nav>
         </header>
 
         <main class="main-content">
