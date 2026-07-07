@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta property="og:title" content="Groovin' Around - Manifest" />
     <meta property="og:description" content="Música en directe, Sonoritzacions i Il·luminació." />
     <meta property="og:image" content="https://www.groovinaround.com/logocolor.png" />
     <meta property="og:url" content="https://www.groovinaround.com/manifest.html" />
+    <meta property="og:type" content="website" />
+
     <title>Manifest - Groovin' Around</title>
     <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; background-color: #f7d648; overflow: hidden; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
+
+    <script>
+        // Truc per a mòbils: Si és un mòbil, el redirigim directament al PDF
+        // perquè no es quedi clavat a l'iframe amb la pantalla fosca.
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            window.location.href = "pdf/Manifest.pdf";
+        }
+    </script>
 </head>
 <body>
+
     <iframe src="pdf/Manifest.pdf"></iframe>
+
 </body>
 </html>
